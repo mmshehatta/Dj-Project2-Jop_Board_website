@@ -1,4 +1,6 @@
+from django.core.exceptions import DisallowedRedirect
 from django.db import models
+from django.db.models.fields import CharField
 
 # Create your models here.
 
@@ -18,7 +20,13 @@ class Jop(models.Model):
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=5000)
     experience =models.IntegerField(default=1)
-    # category---as relationship
-
+    category = models.ForeignKey('Category',on_delete=models.CASCADE)
     def __str__(self):
         return self.title
+
+
+class Category(models.Model):
+    cat_name= CharField(max_length=25)
+    
+    def __str__(self):
+        return self.cat_name
