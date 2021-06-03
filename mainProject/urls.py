@@ -16,7 +16,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 
+# adding Django.conf.urls functions for use in URLconfs¶ --
+# Helper function to return a URL pattern for serving files in debug mode:
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/' , include('job.urls'))
 ]
+
+# urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns+=static(settings.STATIC_URL , document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ 
+        
+ 
+
+
+
+
+
